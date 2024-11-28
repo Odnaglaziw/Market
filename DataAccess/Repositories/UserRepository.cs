@@ -15,7 +15,7 @@ namespace DataAccess.Repositories
 
         public async Task<User> GetByLogin(string login)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == login);
+            return await _context.Users.Include(u => u.Products).FirstOrDefaultAsync(u => u.Email == login);
         }
 
         public async Task<User> GetByIdAsync(int id)
@@ -25,7 +25,7 @@ namespace DataAccess.Repositories
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(u => u.Products).ToListAsync();
         }
 
         public async Task AddAsync(User user)

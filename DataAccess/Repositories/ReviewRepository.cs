@@ -13,9 +13,9 @@ namespace DataAccess.Repositories
             _context = context;
         }
 
-        public async Task<Review> GetByIdAsync(int id)
+        public async Task<List<Review>> GetByProductIdAsync(int id)
         {
-            return await _context.Reviews.FindAsync(id);
+            return await _context.Reviews.Where(r => r.ProductId == id).Include(r => r.User).Include(r => r.Product).ToListAsync();
         }
 
         public async Task<IEnumerable<Review>> GetAllAsync()

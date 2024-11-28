@@ -14,6 +14,7 @@ namespace App
         private Button button1;
         private Button button2;
         private Product product;
+        public Button ReviewsButton => button1;
 
         public ProductCard(Product product)
         {

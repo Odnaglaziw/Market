@@ -10,6 +10,7 @@ namespace App
         bool moving = false;
         ProductRepository repository;
         UserRepository userRepository;
+        Form second;
         public Main()
         {
             repository = new ProductRepository(new MarketContext());
@@ -112,6 +113,26 @@ namespace App
                 var productCard = new ProductCard(product)
                 {
                     Size = new Size(220, 400)
+                };
+
+                productCard.ReviewsButton.Click += (s, e) =>
+                {
+                    if (second != null) second.Close();
+                    second = new ProductInfo(product)
+                    {
+                        TopLevel = false,
+                        Parent = screen,
+                        Dock = DockStyle.Fill,
+                        Enabled = true,
+                    };
+                    
+                    second.Show();
+                    screen.Visible = !screen.Visible;
+                    screen.Enabled = !screen.Enabled;
+                    flowLayoutPanel1.Visible = !flowLayoutPanel1.Visible;
+                    flowLayoutPanel1.Enabled = !flowLayoutPanel1.Enabled;
+                    if (button4.Text.ToLower() == "корзина") button4.Text = "Каталог";
+                    else button4.Text = "Корзина";
                 };
 
                 flowLayoutPanel1.Controls.Add(productCard);

@@ -7,7 +7,7 @@ namespace Models.Abstractions
         Task AddAsync(Review review);
         Task DeleteAsync(int id);
         Task<IEnumerable<Review>> GetAllAsync();
-        Task<Review> GetByIdAsync(int id);
+        Task<List<Review>> GetByProductIdAsync(int id);
         Task UpdateAsync(Review review);
     }
 
