@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Models;
+using Models.Models;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
@@ -31,9 +31,26 @@ namespace DataAccess
                 .HasForeignKey(p => p.SellerId);
 
             modelBuilder.Entity<Product>()
-                .HasMany(p => p.Reviews)
-                .WithOne(r => r.Product)
-                .HasForeignKey(r => r.ProductId);
+                .Property(p => p.Name)
+                .IsRequired() 
+                .HasMaxLength(100); 
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Description)
+                .HasMaxLength(500); 
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)"); 
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.ImageUrl)
+                .HasMaxLength(500);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Seller)
+                .WithMany(u => u.Products)
+                .HasForeignKey(p => p.SellerId);
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Reviews)
@@ -50,7 +67,6 @@ namespace DataAccess
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка подключения к базе данных: {ex.Message}");
                     return false;
                 }
             }

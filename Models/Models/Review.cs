@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Models
+namespace Models.Models
 {
     public class Review
     {
@@ -15,7 +15,7 @@ namespace Models
         }
         public Review()
         {
-            
+
         }
         [Key]
         public int Id { get; set; }
