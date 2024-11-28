@@ -1,5 +1,4 @@
-﻿
-using DataAccess;
+﻿using DataAccess;
 using DataAccess.Repositories;
 using System.Reflection;
 using System.Windows.Forms;
@@ -17,6 +16,10 @@ namespace App
             userRepository = new UserRepository(new MarketContext());
             InitializeComponent();
             SetDoubleBuffered(flowLayoutPanel1);
+            SetDoubleBuffered(screen);
+            ClosePanel();
+            screen.Visible = false;
+            screen.Enabled = false;
             panel1.MouseEnter += (s, e) => { if (!moving) ShowPanel(); };
             panel1.MouseLeave += (s, e) =>
             {
@@ -74,7 +77,7 @@ namespace App
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer() { Interval = 16 };
             timer.Start();
             int startWidth = panel1.Width;
-            int targetWidth = 15;
+            int targetWidth = 10;
             int distance = startWidth - targetWidth;
             int elapsedTime = 0; // Время с момента начала анимации
 
@@ -140,6 +143,16 @@ namespace App
         {
             Program.user.Password = Program.HashPassword(PasswordBox.Text.Trim());
             await userRepository.UpdateAsync(Program.user);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            screen.Visible = !screen.Visible;
+            screen.Enabled = !screen.Enabled;
+            flowLayoutPanel1.Visible = !flowLayoutPanel1.Visible;
+            flowLayoutPanel1.Enabled = !flowLayoutPanel1.Enabled;
+            if (button4.Text.ToLower() == "корзина") button4.Text = "Каталог";
+            else button4.Text = "Корзина";
         }
     }
     public static class RectangleExtensions

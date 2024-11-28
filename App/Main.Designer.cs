@@ -37,8 +37,10 @@
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
+            button5 = new Button();
             textBox1 = new TextBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            screen = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -100,6 +102,7 @@
             button4.TabIndex = 6;
             button4.Text = "Корзина";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -137,12 +140,24 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(22, 22, 22);
+            panel2.Controls.Add(button5);
             panel2.Controls.Add(textBox1);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(200, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(600, 57);
+            panel2.Size = new Size(600, 64);
             panel2.TabIndex = 1;
+            // 
+            // button5
+            // 
+            button5.Dock = DockStyle.Right;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(481, 0);
+            button5.Name = "button5";
+            button5.Size = new Size(119, 64);
+            button5.TabIndex = 1;
+            button5.Text = "Поиск";
+            button5.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -150,23 +165,33 @@
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Location = new Point(6, 12);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(582, 39);
+            textBox1.Size = new Size(466, 39);
             textBox1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(200, 57);
+            flowLayoutPanel1.Location = new Point(200, 64);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(600, 355);
+            flowLayoutPanel1.Size = new Size(600, 348);
             flowLayoutPanel1.TabIndex = 2;
+            // 
+            // screen
+            // 
+            screen.BackColor = Color.Green;
+            screen.Dock = DockStyle.Fill;
+            screen.Location = new Point(200, 64);
+            screen.Name = "screen";
+            screen.Size = new Size(600, 348);
+            screen.TabIndex = 3;
             // 
             // Main
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(44, 44, 44);
             ClientSize = new Size(800, 412);
+            Controls.Add(screen);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -195,5 +220,7 @@
         private TextBox PasswordBox;
         private TextBox EmalBox;
         private TextBox NameBox;
+        private Button button5;
+        private Panel screen;
     }
 }

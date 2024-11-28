@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Repositories;
+using Models;
 using Models.Models;
 using System;
 using System.Collections.Generic;
