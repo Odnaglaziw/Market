@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Models
 {
     public class Product
     {
@@ -11,12 +13,18 @@
             ImageUrl = imageUrl;
             SellerId = sellerId;
         }
-
+        public Product()
+        {
+            
+        }
+        [Key]
         public int Id { get; }
         public string Name { get; }
         public string Description { get; }
         public double Price { get; }
         public string ImageUrl { get; }
         public int SellerId { get; set; }
+        public User Seller { get; set; }
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

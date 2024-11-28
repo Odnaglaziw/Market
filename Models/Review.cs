@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Models
 {
     public class Review
     {
@@ -11,10 +13,16 @@
             Comment = comment;
             CreatedDate = createdDate;
         }
-
+        public Review()
+        {
+            
+        }
+        [Key]
         public int Id { get; set; }
         public int ProductId { get; set; }
+        public Product Product { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime CreatedDate { get; set; }
